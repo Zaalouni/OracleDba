@@ -17,6 +17,14 @@ ORDER BY a.piece;
 
 
 
+-- Displays the SQL statement held by SID
+
+SELECT a.sql_text
+FROM   v$sqltext a,       v$session b
+WHERE  a.address = b.sql_address
+AND    a.hash_value = b.sql_hash_value
+AND    b.sid = &1
+
 
 
 
