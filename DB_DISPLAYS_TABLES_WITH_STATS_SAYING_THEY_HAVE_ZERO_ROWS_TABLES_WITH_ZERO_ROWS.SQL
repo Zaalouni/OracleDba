@@ -1,0 +1,34 @@
+ 
+ 
+-- ----------------------------------------------------------------------------- 
+------ 
+ql 
+--  Author        : aws-senior.com 
+-- Description  : Displays tables with stats saying they have zero rows. 
+--  Requirements  : Access to the DBA views. 
+-- Call Syntax  : @tables_with_zero_rows.sql 
+-- ----------------------------------------------------------------------------- 
+------ 
+ 
+  SELECT   owner, 
+       table_name, 
+       last_analyzed, 
+       num_rows 
+FROM     dba  _tables 
+  WHERE    num_rows = 0 
+AND    owner NOT IN ('SYS','SYSTEM','SYSMAN','XDB','MDSYS', 
+                     'WMSYS','OUTLN','ORDDATA','ORDSYS', 
+                     'OLAPSYS','EXFSYS','DBNSMP','CTXSYS', 
+                     'APEX_030200','FLOWS_FILES','SCOTT', 
+                     'TSMSYS','DBSNMP','APPQOSSYS','OWBSYS', 
+                     'DMSYS','FLOWS_030100','WKSYS','WK_TEST') 
+ORDER BY owner, table_name; 
+ 
+ 
+-------------------------------------------------------------------------------------- 
+--  File Name     : https://github.com/Zaalouni/OracleDba  
+--  Author        : Zaalouni 
+--  website       : www.aws-senior.com 
+-- Github       : https://github.com/Zaalouni/OracleDba 
+-------------------------------------------------------------------------------------- 
+  
